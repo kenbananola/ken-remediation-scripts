@@ -20,7 +20,7 @@ sudo systemctl restart smbd 2>/dev/null
 rm remediation-disable-smbv1.sh
 
 # Download the script
-# wget https://raw.githubusercontent.com/kenbananola/ken-remediation-scripts/refs/heads/main/automation/remediation-enable-smb-signing.sh
+# wget https://raw.githubusercontent.com/kenbananola/ken-remediation-scripts/refs/heads/main/automation/remediation-disable-smb-signing.sh
 
 # Make executable
 # chmod +x remediation-disable-smbv1.sh
