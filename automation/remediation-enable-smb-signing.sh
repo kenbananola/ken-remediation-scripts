@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# Enforce SMB signing
+# Remove any existing server signing entries
+sudo sed -i '/^server signing/d' /etc/samba/smb.conf
+
+# Add mandatory SMB signing under [global]
 sudo sed -i '/^\[global\]/a server signing = mandatory' /etc/samba/smb.conf
 
 # Restart Samba
@@ -10,7 +13,7 @@ sudo systemctl restart smbd 2>/dev/null
 rm remediation-enable-smb-signing.sh
 
 # Download the script
-# wget https://raw.githubusercontent.com/kenbananola/ken-remediation-scripts/main/automation/remediation-enable-smb-signing.sh
+# wget <github url of raw script>
 
 # Make the script executable:
 # chmod +x remediation-enable-smb-signing.sh
