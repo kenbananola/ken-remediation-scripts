@@ -2,28 +2,29 @@
 
 CONF="/etc/samba/smb.conf"
 
-# Remove any existing server signing entries
-sudo sed -i '/^[[:space:]]*server signing[[:space:]]*=.*/d' "$CONF"
+# Remove any existing min protocol entries
+sudo sed -i '/^[[:space:]]*server min protocol[[:space:]]*=.*/d' "$CONF"
+sudo sed -i '/^[[:space:]]*min protocol[[:space:]]*=.*/d' "$CONF"
 
-# If [global] exists, insert under it
+# Insert secure minimum protocol
 if grep -q "^\[global\]" "$CONF"; then
-    sudo sed -i '/^\[global\]/a server signing = mandatory' "$CONF"
+    sudo sed -i '/^\[global\]/a server min protocol = SMB2' "$CONF"
 else
-    # If no [global], create it
-    echo -e "\n[global]\nserver signing = mandatory" | sudo tee -a "$CONF"
+    echo -e "\n[global]\nserver min protocol = SMB2" | sudo tee -a "$CONF"
 fi
 
 # Restart Samba
 sudo systemctl restart smbd 2>/dev/null
 
-# Self-delete
-rm remediation-enable-smb-signing.sh
+# Self delete
+rm remediation-disable-smbv1.sh
 
 # Download the script
 # wget <github url of raw script>
 
 # Make executable
-# chmod +x remediation-enable-smb-signing.sh
+# chmod +x remediation-disable-smbv1.sh
 
 # Execute
-# ./remediation-enable-smb-signing.sh
+# ./remediation-disable-smbv1.sh
+
