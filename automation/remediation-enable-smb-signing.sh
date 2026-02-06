@@ -23,7 +23,7 @@ sudo systemctl restart smbd 2>/dev/null
 rm remediation-enable-smb-signing.sh
 
 # Download the script
-# wget <github url of raw script>
+# wget https://raw.githubusercontent.com/kenbananola/ken-remediation-scripts/refs/heads/main/automation/remediation-enable-smb-signing.sh
 
 # Make the script executable:
 # chmod +x remediation-enable-smb-signing.sh
