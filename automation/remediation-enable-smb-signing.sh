@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Enforce SMB signing
-sudo sed -i 's/^server signing =.*/server signing = mandatory/' /etc/samba/smb.conf || echo "server signing = mandatory" | sudo tee -a /etc/samba/smb.conf
+sudo sed -i '/^\[global\]/a server signing = mandatory' /etc/samba/smb.conf
 
 # Restart Samba
 sudo systemctl restart smbd 2>/dev/null
